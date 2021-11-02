@@ -122,25 +122,4 @@ A function that receives the Webpack configuration object so that it can be muta
 
 ### Default Webpack configuration
 
-```js
-{
-    mode: 'production',
-    target: 'node',
-    entry: {
-        index: '/src/index.js',
-    },
-    module: {
-        rules: [],
-    },
-    optimization: {
-        minimize: false,
-    },
-    output: {
-        filename: '[name].js',
-        path: '/dist',
-        libraryTarget: 'commonjs2',
-        libraryExport: 'default',
-    },
-    plugins: [],
-}
-```
+See [`src/utils/get-default-webpack-config.ts`](/src/utils/get-default-webpack-config.ts).
