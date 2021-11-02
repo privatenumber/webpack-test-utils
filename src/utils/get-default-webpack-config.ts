@@ -1,5 +1,5 @@
-import type webpack from 'webpack';
 import path from 'path';
+import type webpack from 'webpack';
 
 export const getDefaultWebpackConfig = () => ({
 	mode: 'production' as const,
@@ -41,7 +41,7 @@ export const getDefaultWebpackConfig = () => ({
 		/**
 		 * Ideally, chunkIds: 'named' and moduleIds: 'named' are set
 		 * but seems the config is different between Webpack 4 and 5
-		 * 
+		 *
 		 * https://webpack.js.org/migrate/5/#update-outdated-options
 		 */
 	},
