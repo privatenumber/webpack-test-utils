@@ -8,34 +8,11 @@ import pDefer, { DeferredPromise } from 'p-defer';
 import { createFsRequire } from 'fs-require';
 import { ConfigureCompilerPlugin } from './utils/configure-compiler-plugin';
 import { mfsFromJson } from './utils/mfs-from-json';
+import { getDefaultWebpackConfig, DefaultWebpackConfig } from './utils/get-default-webpack-config';
 
 type Webpack = (options: webpack.Configuration) => any;
 type OutputFileSystem = webpack.Compiler['outputFileSystem'];
 type fsRequire = ReturnType<typeof createFsRequire>;
-
-const getDefaultWebpackConfig = () => ({
-	mode: 'production' as const,
-	target: 'node',
-	entry: {
-		index: '/src/index.js',
-	},
-	module: {
-		rules: [] as NonNullable<webpack.ModuleOptions['rules']>,
-	},
-	optimization: {
-		minimize: false,
-	},
-	output: {
-		filename: '[name].js',
-		path: '/dist',
-		libraryTarget: 'commonjs2',
-		libraryExport: 'default',
-	},
-	plugins: [] as NonNullable<webpack.Configuration['plugins']>,
-});
-
-type DefaultWebpackConfig = ReturnType<typeof getDefaultWebpackConfig>;
-// type WebpackConfigWithDefaults = webpack.Configuration & DefaultWebpackConfig;
 
 function createCompiler<WebpackConfig extends webpack.Configuration>(
 	mfs: OutputFileSystem,
