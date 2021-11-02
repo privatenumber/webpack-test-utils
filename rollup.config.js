@@ -11,9 +11,7 @@ export default defineConfig([
 		plugins: [
 			nodeResolve(),
 			commonjs(),
-			esbuild({
-				minify: true,
-			}),
+			esbuild(),
 		],
 		external: [
 			...Object.keys(peerDependencies),
