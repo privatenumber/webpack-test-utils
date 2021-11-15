@@ -8,7 +8,9 @@ import pDefer, { DeferredPromise } from 'p-defer';
 import { createFsRequire } from 'fs-require';
 import { ConfigureCompilerPlugin } from './utils/configure-compiler-plugin';
 import { mfsFromJson } from './utils/mfs-from-json';
-import { getDefaultWebpackConfig, DefaultWebpackConfig } from './utils/get-default-webpack-config';
+import { getDefaultWebpackConfig } from './utils/get-default-webpack-config';
+import type { DefaultWebpackConfig } from './utils/get-default-webpack-config';
+export type { DefaultWebpackConfig };
 
 type Webpack = (options: webpack.Configuration) => any;
 type OutputFileSystem = webpack.Compiler['outputFileSystem'];
