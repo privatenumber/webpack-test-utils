@@ -10,6 +10,7 @@ import { ConfigureCompilerPlugin } from './utils/configure-compiler-plugin';
 import { mfsFromJson } from './utils/mfs-from-json';
 import { getDefaultWebpackConfig } from './utils/get-default-webpack-config';
 import type { DefaultWebpackConfig } from './utils/get-default-webpack-config';
+
 export type { DefaultWebpackConfig };
 
 type Webpack = (options: webpack.Configuration) => any;
