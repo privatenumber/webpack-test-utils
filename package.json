@@ -26,7 +26,8 @@
 		"test": "NODE_OPTIONS=--openssl-legacy-provider tsx tests",
 		"build": "rollup -c rollup.config.js",
 		"lint": "eslint .",
-		"type-check": "tsc --noEmit"
+		"type-check": "tsc --noEmit",
+		"prepack": "pnpm build && clean-pkg-json"
 	},
 	"simple-git-hooks": {
 		"pre-commit": "pnpm lint-staged"
@@ -48,6 +49,7 @@
 		"@rollup/plugin-node-resolve": "^13.0.6",
 		"@types/node": "^18.11.9",
 		"@vue/compiler-sfc": "^3.2.22",
+		"clean-pkg-json": "^1.2.0",
 		"eslint": "^8.28.0",
 		"lint-staged": "^13.0.4",
 		"manten": "^0.5.0",
