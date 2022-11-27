@@ -20,7 +20,6 @@ npm i -D webpack-test-utils
 import { build } from 'webpack-test-utils'
 
 test('build', async () => {
-
     // Create in-memory file-system
     const volume = {
         '/src/index.js': 'export default "12345"'
@@ -43,7 +42,6 @@ test('build', async () => {
 import { watch } from 'webpack-test-utils'
 
 test('watch', async () => {
-
     // Create in-memory file-system
     const volume = {
         '/src/index.js': 'export default "12345"'
