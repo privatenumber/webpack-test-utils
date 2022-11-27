@@ -54,4 +54,15 @@ export const getDefaultWebpackConfig = () => ({
 	plugins: [] as NonNullable<webpack.Configuration['plugins']>,
 });
 
-export type DefaultWebpackConfig = ReturnType<typeof getDefaultWebpackConfig>;
+type SetDefault<Obj, Defaults> = Obj & {
+    [Key in keyof Defaults]: (
+        Key extends keyof Obj
+            ? SetDefault<Obj[Key], Defaults[Key]>
+            : Defaults[Key]
+     );
+};
+
+export type DefaultWebpackConfig = SetDefault<
+    ReturnType<typeof getDefaultWebpackConfig>,
+    webpack.Configuration
+>;
