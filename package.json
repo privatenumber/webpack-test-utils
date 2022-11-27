@@ -26,7 +26,7 @@
 		"test": "NODE_OPTIONS=--openssl-legacy-provider tsx tests",
 		"build": "rollup -c rollup.config.js",
 		"lint": "eslint .",
-		"typecheck": "tsc --noEmit"
+		"type-check": "tsc --noEmit"
 	},
 	"simple-git-hooks": {
 		"pre-commit": "pnpm lint-staged"
