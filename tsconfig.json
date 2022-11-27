@@ -4,11 +4,9 @@
 		"isolatedModules": true,
 		"esModuleInterop": true,
 		"strict": true,
+		"skipLibCheck": true,
 
 		// Node 12
 		"target": "ES2019"
 	},
-	"include": [
-		"src"
-	]
 }
