@@ -22,15 +22,14 @@
 	],
 	"main": "dist/index.js",
 	"scripts": {
+		"prepare": "simple-git-hooks",
 		"test": "jest",
 		"build": "rollup -c rollup.config.js",
 		"lint": "eslint .",
 		"typecheck": "tsc --noEmit"
 	},
-	"husky": {
-		"hooks": {
-			"pre-commit": "lint-staged"
-		}
+	"simple-git-hooks": {
+		"pre-commit": "pnpm lint-staged"
 	},
 	"lint-staged": {
 		"*.{js,ts}": [
@@ -55,13 +54,13 @@
 		"@vue/compiler-sfc": "^3.2.22",
 		"es-jest": "^1.4.1",
 		"eslint": "^8.28.0",
-		"husky": "^4.3.8",
 		"jest": "^27.3.1",
-		"lint-staged": "^12.0.2",
+		"lint-staged": "^13.0.4",
 		"p-defer": "^4.0.0",
 		"rollup": "^2.60.0",
 		"rollup-plugin-dts": "^4.0.1",
 		"rollup-plugin-esbuild": "^4.6.0",
+		"simple-git-hooks": "^2.8.1",
 		"typescript": "^4.9.3",
 		"vue-loader": "^16.8.2",
 		"webpack": "^5.60.0"
