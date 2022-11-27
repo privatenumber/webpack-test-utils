@@ -23,7 +23,7 @@
 	"main": "dist/index.js",
 	"scripts": {
 		"prepare": "simple-git-hooks",
-		"test": "jest",
+		"test": "NODE_OPTIONS=--openssl-legacy-provider tsx tests",
 		"build": "rollup -c rollup.config.js",
 		"lint": "eslint .",
 		"typecheck": "tsc --noEmit"
@@ -32,10 +32,7 @@
 		"pre-commit": "pnpm lint-staged"
 	},
 	"lint-staged": {
-		"*.{js,ts}": [
-			"eslint",
-			"jest --bail --findRelatedTests"
-		]
+		"*.{js,ts}": "eslint"
 	},
 	"peerDependencies": {
 		"webpack": "^4.40.0 || ^5.0.0"
@@ -49,18 +46,17 @@
 		"@pvtnbr/eslint-config": "^0.33.0",
 		"@rollup/plugin-commonjs": "^21.0.1",
 		"@rollup/plugin-node-resolve": "^13.0.6",
-		"@types/jest": "^27.0.2",
 		"@types/node": "^18.11.9",
 		"@vue/compiler-sfc": "^3.2.22",
-		"es-jest": "^1.4.1",
 		"eslint": "^8.28.0",
-		"jest": "^27.3.1",
 		"lint-staged": "^13.0.4",
+		"manten": "^0.5.0",
 		"p-defer": "^4.0.0",
 		"rollup": "^2.60.0",
 		"rollup-plugin-dts": "^4.0.1",
 		"rollup-plugin-esbuild": "^4.6.0",
 		"simple-git-hooks": "^2.8.1",
+		"tsx": "^3.12.1",
 		"typescript": "^4.9.3",
 		"vue-loader": "^16.8.2",
 		"webpack": "^5.60.0"
