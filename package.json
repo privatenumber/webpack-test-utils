@@ -30,7 +30,7 @@
 	},
 	"scripts": {
 		"prepare": "simple-git-hooks",
-		"test": "NODE_OPTIONS=--openssl-legacy-provider tsx tests",
+		"test": "tsx tests",
 		"build": "pkgroll --minify",
 		"lint": "eslint .",
 		"type-check": "tsc --noEmit",
