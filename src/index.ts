@@ -6,10 +6,10 @@ import { DirectoryJSON } from 'memfs';
 import type { IFs } from 'memfs';
 import pDefer, { DeferredPromise } from 'p-defer';
 import { createFsRequire } from 'fs-require';
-import { ConfigureCompilerPlugin } from './utils/configure-compiler-plugin';
-import { mfsFromJson } from './utils/mfs-from-json';
-import { getDefaultWebpackConfig } from './utils/get-default-webpack-config';
-import type { DefaultWebpackConfig } from './utils/get-default-webpack-config';
+import { ConfigureCompilerPlugin } from './utils/configure-compiler-plugin.js';
+import { mfsFromJson } from './utils/mfs-from-json.js';
+import { getDefaultWebpackConfig } from './utils/get-default-webpack-config.js';
+import type { DefaultWebpackConfig } from './utils/get-default-webpack-config.js';
 
 export type { DefaultWebpackConfig };
 
