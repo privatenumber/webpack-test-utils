@@ -11,7 +11,7 @@ specifiers:
   manten: ^0.5.0
   memfs: ^3.4.12
   p-defer: ^4.0.0
-  pkgroll: github:privatenumber/pkgroll#npm/support-dts-from-mts
+  pkgroll: ^1.6.0
   simple-git-hooks: ^2.8.1
   tsx: ^3.12.1
   typescript: ^4.9.3
@@ -33,7 +33,7 @@ devDependencies:
   lint-staged: 13.0.4
   manten: 0.5.0
   p-defer: 4.0.0
-  pkgroll: github.com/privatenumber/pkgroll/3969a6f129bc2c8f09a880ff4a27f855055f4495_typescript@4.9.3
+  pkgroll: 1.6.0_typescript@4.9.3
   simple-git-hooks: 2.8.1
   tsx: 3.12.1
   typescript: 4.9.3
@@ -3109,6 +3109,28 @@ packages:
     hasBin: true
     dev: true
 
+  /pkgroll/1.6.0_typescript@4.9.3:
+    resolution: {integrity: sha512-gVr6+WPpVHnm2WxaVImyA3tocXLtUI/cOB8r3p7PR7mMDycCFrsKyw46zCGcs3XU1fXxnC4oe6k8f4/3X8SRzw==}
+    hasBin: true
+    peerDependencies:
+      typescript: ^4.1
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+    dependencies:
+      '@rollup/plugin-alias': 3.1.9_rollup@2.79.1
+      '@rollup/plugin-commonjs': 22.0.2_rollup@2.79.1
+      '@rollup/plugin-inject': 4.0.4_rollup@2.79.1
+      '@rollup/plugin-json': 4.1.0_rollup@2.79.1
+      '@rollup/plugin-node-resolve': 13.3.0_rollup@2.79.1
+      '@rollup/plugin-replace': 4.0.0_rollup@2.79.1
+      '@rollup/pluginutils': 4.2.1
+      esbuild: 0.15.15
+      magic-string: 0.26.7
+      rollup: 2.79.1
+      typescript: 4.9.3
+    dev: true
+
   /pluralize/8.0.0:
     resolution: {integrity: sha512-Nc3IT5yHzflTfbjgqWcCPpo7DaKy4FnpB0l/zCAW0Tc7jxAiuqSxHasntB3D7887LSrA93kDJ9IXovxJYxyLCA==}
     engines: {node: '>=4'}
@@ -3944,29 +3966,4 @@ packages:
   /yocto-queue/0.1.0:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
-    dev: true
-
-  github.com/privatenumber/pkgroll/3969a6f129bc2c8f09a880ff4a27f855055f4495_typescript@4.9.3:
-    resolution: {tarball: https://codeload.github.com/privatenumber/pkgroll/tar.gz/3969a6f129bc2c8f09a880ff4a27f855055f4495}
-    id: github.com/privatenumber/pkgroll/3969a6f129bc2c8f09a880ff4a27f855055f4495
-    name: pkgroll
-    version: 0.0.0-semantic-release
-    hasBin: true
-    peerDependencies:
-      typescript: ^4.1
-    peerDependenciesMeta:
-      typescript:
-        optional: true
-    dependencies:
-      '@rollup/plugin-alias': 3.1.9_rollup@2.79.1
-      '@rollup/plugin-commonjs': 22.0.2_rollup@2.79.1
-      '@rollup/plugin-inject': 4.0.4_rollup@2.79.1
-      '@rollup/plugin-json': 4.1.0_rollup@2.79.1
-      '@rollup/plugin-node-resolve': 13.3.0_rollup@2.79.1
-      '@rollup/plugin-replace': 4.0.0_rollup@2.79.1
-      '@rollup/pluginutils': 4.2.1
-      esbuild: 0.15.15
-      magic-string: 0.26.7
-      rollup: 2.79.1
-      typescript: 4.9.3
     dev: true
