@@ -75,6 +75,11 @@
 		"vue-loader": "^16.8.2",
 		"webpack": "^5.60.0"
 	},
+	"pnpm": {
+		"overrides": {
+			"@esbuild-kit/esm-loader": "github:esbuild-kit/esm-loader#npm/debug"
+		}
+	},
 	"eslintConfig": {
 		"extends": "@pvtnbr"
 	}

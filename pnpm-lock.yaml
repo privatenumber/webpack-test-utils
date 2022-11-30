@@ -1,5 +1,8 @@
 lockfileVersion: 5.4
 
+overrides:
+  '@esbuild-kit/esm-loader': github:esbuild-kit/esm-loader#npm/debug
+
 specifiers:
   '@pvtnbr/eslint-config': ^0.33.0
   '@types/node': ^18.11.9
@@ -118,13 +121,6 @@ packages:
     dependencies:
       esbuild: 0.15.15
       source-map-support: 0.5.21
-    dev: true
-
-  /@esbuild-kit/esm-loader/2.5.3:
-    resolution: {integrity: sha512-7tPwjMtiCgJXDDmW5/HT0wXYVlY0W6M29C0KB8R7fuNDRxUC9+hB5pYNbRx6DhOYR8IGb9z//ozaQK9ulVEGLg==}
-    dependencies:
-      '@esbuild-kit/core-utils': 3.0.0
-      get-tsconfig: 4.2.0
     dev: true
 
   /@esbuild/android-arm/0.15.15:
@@ -3738,7 +3734,7 @@ packages:
     dependencies:
       '@esbuild-kit/cjs-loader': 2.4.1
       '@esbuild-kit/core-utils': 3.0.0
-      '@esbuild-kit/esm-loader': 2.5.3
+      '@esbuild-kit/esm-loader': github.com/esbuild-kit/esm-loader/0caa9d3520234545a3e2aeedc267121fca93f258
     optionalDependencies:
       fsevents: 2.3.2
     dev: true
@@ -3966,4 +3962,13 @@ packages:
   /yocto-queue/0.1.0:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
+    dev: true
+
+  github.com/esbuild-kit/esm-loader/0caa9d3520234545a3e2aeedc267121fca93f258:
+    resolution: {tarball: https://codeload.github.com/esbuild-kit/esm-loader/tar.gz/0caa9d3520234545a3e2aeedc267121fca93f258}
+    name: '@esbuild-kit/esm-loader'
+    version: 0.0.0-semantic-release
+    dependencies:
+      '@esbuild-kit/core-utils': 3.0.0
+      get-tsconfig: 4.2.0
     dev: true
