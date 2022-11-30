@@ -6,7 +6,7 @@ specifiers:
   '@vue/compiler-sfc': ^3.2.22
   clean-pkg-json: ^1.2.0
   eslint: ^8.28.0
-  fs-require: ^1.4.1
+  fs-require: ^1.4.2
   lint-staged: ^13.0.4
   manten: ^0.5.0
   memfs: ^3.4.12
@@ -20,7 +20,7 @@ specifiers:
   webpack: ^5.60.0
 
 dependencies:
-  fs-require: 1.4.1
+  fs-require: 1.4.2
   memfs: 3.4.12
   unionfs: 4.4.0
 
@@ -2021,8 +2021,8 @@ packages:
     resolution: {integrity: sha512-cybjIfiiE+pTWicSCLFHSrXZ6EilF30oh91FDP9S2B051prEa7QWfrVTQm10/dDpswBDXZugPa1Ogu8Yh+HV0Q==}
     dev: false
 
-  /fs-require/1.4.1:
-    resolution: {integrity: sha512-BIbxbqksdYkk/Hsi57blyMn0num18dJ5Dh2S7Dfriamiq8MX58Mv+TdDfRdmomzeWfhQAgTeNQiphPAROpT1sw==}
+  /fs-require/1.4.2:
+    resolution: {integrity: sha512-fC9qtpGiFqLwScjlY0citpwB2ClVonDweFYkPboumFncDoKQDojTkWqk9V6cBoCVwMzPcDNid2c9JGO05qqEbg==}
     dev: false
 
   /fs.realpath/1.0.0:
