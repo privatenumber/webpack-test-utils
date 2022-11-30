@@ -1,7 +1,7 @@
 import { describe, expect } from 'manten';
 import { VueLoaderPlugin } from 'vue-loader';
 import type webpack from 'webpack';
-import { build, watch } from '../src/index';
+import { build, watch } from '#webpack-test-utils';
 
 describe('webpack-test-utils', ({ test }) => {
 	test('build', async () => {
