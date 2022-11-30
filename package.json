@@ -38,7 +38,7 @@
 	},
 	"scripts": {
 		"prepare": "simple-git-hooks",
-		"test": "tsx tests",
+		"test": "pnpm build && tsx tests",
 		"build": "pkgroll --minify",
 		"lint": "eslint .",
 		"type-check": "tsc --noEmit",
@@ -74,11 +74,6 @@
 		"typescript": "^4.9.3",
 		"vue-loader": "^16.8.2",
 		"webpack": "^5.60.0"
-	},
-	"pnpm": {
-		"overrides": {
-			"@esbuild-kit/esm-loader": "github:esbuild-kit/esm-loader#npm/debug"
-		}
 	},
 	"eslintConfig": {
 		"extends": "@pvtnbr"
