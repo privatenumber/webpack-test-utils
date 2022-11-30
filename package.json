@@ -38,7 +38,7 @@
 	},
 	"scripts": {
 		"prepare": "simple-git-hooks",
-		"test": "pnpm build && tsx tests",
+		"test": "tsx tests",
 		"build": "pkgroll --minify",
 		"lint": "eslint .",
 		"type-check": "tsc --noEmit",

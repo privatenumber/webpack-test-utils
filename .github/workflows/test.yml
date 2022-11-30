@@ -32,6 +32,9 @@ jobs:
     - name: Type check
       run: pnpm type-check
 
+    - name: Build
+      run: pnpm build
+
     - name: Test
       env:
         NODE_OPTIONS: --openssl-legacy-provider
