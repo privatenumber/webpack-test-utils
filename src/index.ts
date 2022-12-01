@@ -1,6 +1,6 @@
 import fs from 'fs';
 import webpack from 'webpack';
-import { ufs } from 'unionfs';
+import { Union } from 'unionfs';
 import type { IFS } from 'unionfs/lib/fs.js';
 import { DirectoryJSON } from 'memfs';
 import type { IFs } from 'memfs';
@@ -35,7 +35,7 @@ function createCompiler<WebpackConfig extends webpack.Configuration>(
 	 * https://github.com/webpack/webpack/blob/068ce839478317b54927d533f6fa4713cb6834da/lib/webpack.js#L69-L77
 	 */
 	config.plugins.unshift(new ConfigureCompilerPlugin({
-		inputFileSystem: ufs.use(fs).use(mfs as unknown as IFS),
+		inputFileSystem: (new Union()).use(fs).use(mfs as unknown as IFS),
 		outputFileSystem: mfs,
 	}));
 
