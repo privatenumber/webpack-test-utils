@@ -19,7 +19,7 @@ describe('webpack-test-utils', ({ test }) => {
 
 	test('config defaults', async () => {
 		await build({}, (config) => {
-			expect<webpack.ModuleOptions['rules']>(config.module.rules).toEqual([]);
+			expect<webpack.ModuleOptions['rules']>(config.module!.rules).toEqual([]);
 			expect<webpack.Configuration['plugins']>(config.plugins).toEqual([]);
 		});
 	});
@@ -30,14 +30,14 @@ describe('webpack-test-utils', ({ test }) => {
 		};
 
 		const built = await build(volume, (config) => {
-			config.entry.index = '/src/index.vue';
+			(config.entry as webpack.EntryObject).index = '/src/index.vue';
 
-			config.module.rules.push({
+			config.module!.rules!.push({
 				test: /\.vue$/,
 				loader: 'vue-loader',
 			});
 
-			config.plugins.push(new VueLoaderPlugin());
+			config.plugins!.push(new VueLoaderPlugin());
 		});
 
 		expect(built.stats.hasErrors()).toBe(false);

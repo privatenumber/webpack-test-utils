@@ -1,8 +1,8 @@
 import path from 'path';
 import type webpack from 'webpack';
 
-export const getDefaultWebpackConfig = () => ({
-	mode: 'production' as const,
+export const getDefaultWebpackConfig = (): webpack.Configuration => ({
+	mode: 'production',
 	target: 'node',
 
 	/**
@@ -33,8 +33,9 @@ export const getDefaultWebpackConfig = () => ({
 	},
 
 	module: {
-		rules: [] as NonNullable<webpack.ModuleOptions['rules']>,
+		rules: [],
 	},
+
 	optimization: {
 		minimize: false,
 
@@ -45,13 +46,13 @@ export const getDefaultWebpackConfig = () => ({
 		 * https://webpack.js.org/migrate/5/#update-outdated-options
 		 */
 	},
+
 	output: {
 		filename: '[name].js',
 		path: '/dist',
 		libraryTarget: 'commonjs2',
 		libraryExport: 'default',
 	},
-	plugins: [] as NonNullable<webpack.Configuration['plugins']>,
-});
 
-export type DefaultWebpackConfig = ReturnType<typeof getDefaultWebpackConfig>;
+	plugins: [],
+});
