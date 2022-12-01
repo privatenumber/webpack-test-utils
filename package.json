@@ -39,7 +39,7 @@
 	"scripts": {
 		"prepare": "simple-git-hooks",
 		"test": "tsx tests",
-		"build": "pkgroll --minify",
+		"build": "pkgroll --target=node12.22.12 --minify",
 		"lint": "eslint .",
 		"type-check": "tsc --noEmit",
 		"dev": "tsx watch --conditions=development tests",
