@@ -1,8 +1,16 @@
 import path from 'path';
 import type webpack from 'webpack';
 
-export const getDefaultWebpackConfig = () => ({
-	mode: 'production' as const,
+// type SetDefault<Obj, Defaults> = Obj & {
+//     [Key in keyof Defaults]: (
+//         Key extends keyof Obj
+//             ? SetDefault<Obj[Key], Defaults[Key]>
+//             : Defaults[Key]
+//      );
+// };
+
+export const getDefaultWebpackConfig = (): webpack.Configuration => ({
+	mode: 'production',
 	target: 'node',
 
 	/**
@@ -35,6 +43,7 @@ export const getDefaultWebpackConfig = () => ({
 	module: {
 		rules: [] as NonNullable<webpack.ModuleOptions['rules']>,
 	},
+
 	optimization: {
 		minimize: false,
 
@@ -45,24 +54,19 @@ export const getDefaultWebpackConfig = () => ({
 		 * https://webpack.js.org/migrate/5/#update-outdated-options
 		 */
 	},
+
 	output: {
 		filename: '[name].js',
 		path: '/dist',
 		libraryTarget: 'commonjs2',
 		libraryExport: 'default',
 	},
-	plugins: [] as NonNullable<webpack.Configuration['plugins']>,
+
+	plugins: [], // as NonNullable<webpack.Configuration['plugins']>,
 });
 
-type SetDefault<Obj, Defaults> = Obj & {
-    [Key in keyof Defaults]: (
-        Key extends keyof Obj
-            ? SetDefault<Obj[Key], Defaults[Key]>
-            : Defaults[Key]
-     );
-};
+// {
+// 	const config =  as const;
 
-export type DefaultWebpackConfig = SetDefault<
-    ReturnType<typeof getDefaultWebpackConfig>,
-    webpack.Configuration
->;
+// 	return config as SetDefault<typeof config, webpack.Configuration>;
+// };
