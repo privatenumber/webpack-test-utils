@@ -5,14 +5,13 @@ import type { IFS } from 'unionfs/lib/fs.js';
 import { DirectoryJSON } from 'memfs';
 import type { IFs } from 'memfs';
 import pDefer, { DeferredPromise } from 'p-defer';
-import { createFsRequire } from 'fs-require';
+import { createFsRequire, type fsRequire } from 'fs-require';
 import { ConfigureCompilerPlugin } from './utils/configure-compiler-plugin.js';
 import { mfsFromJson } from './utils/mfs-from-json.js';
 import { getDefaultWebpackConfig } from './utils/get-default-webpack-config.js';
 
 type Webpack = (options: webpack.Configuration) => any;
 type OutputFileSystem = webpack.Compiler['outputFileSystem'];
-type fsRequire = ReturnType<typeof createFsRequire>;
 
 function createCompiler<WebpackConfig extends webpack.Configuration>(
 	mfs: OutputFileSystem,
