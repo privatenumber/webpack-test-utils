@@ -1,14 +1,6 @@
 import path from 'path';
 import type webpack from 'webpack';
 
-// type SetDefault<Obj, Defaults> = Obj & {
-//     [Key in keyof Defaults]: (
-//         Key extends keyof Obj
-//             ? SetDefault<Obj[Key], Defaults[Key]>
-//             : Defaults[Key]
-//      );
-// };
-
 export const getDefaultWebpackConfig = (): webpack.Configuration => ({
 	mode: 'production',
 	target: 'node',
@@ -41,7 +33,7 @@ export const getDefaultWebpackConfig = (): webpack.Configuration => ({
 	},
 
 	module: {
-		rules: [] as NonNullable<webpack.ModuleOptions['rules']>,
+		rules: [],
 	},
 
 	optimization: {
@@ -62,11 +54,5 @@ export const getDefaultWebpackConfig = (): webpack.Configuration => ({
 		libraryExport: 'default',
 	},
 
-	plugins: [], // as NonNullable<webpack.Configuration['plugins']>,
+	plugins: [],
 });
-
-// {
-// 	const config =  as const;
-
-// 	return config as SetDefault<typeof config, webpack.Configuration>;
-// };
