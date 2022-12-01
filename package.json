@@ -1,0 +1,47 @@
+{
+  "name": "webpack-test-utils",
+  "version": "0.0.0-semantic-release",
+  "description": "Utility functions to test Webpack plugins/loaders",
+  "keywords": [
+    "webpack",
+    "tests",
+    "testing",
+    "plugin",
+    "loader",
+    "utils"
+  ],
+  "license": "MIT",
+  "repository": "privatenumber/webpack-test-utils",
+  "funding": "https://github.com/privatenumber/webpack-test-utils?sponsor=1",
+  "author": {
+    "name": "Hiroki Osame",
+    "email": "hiroki.osame@gmail.com"
+  },
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "types": "./dist/index.d.ts",
+    "require": "./dist/index.cjs",
+    "import": "./dist/index.mjs"
+  },
+  "imports": {
+    "#webpack-test-utils": {
+      "types": "./src/index.ts",
+      "development": "./src/index.ts",
+      "default": "./dist/index.mjs"
+    }
+  },
+  "peerDependencies": {
+    "webpack": "^4.40.0 || ^5.0.0"
+  },
+  "dependencies": {
+    "fs-require": "^1.4.2",
+    "memfs": "^3.4.12",
+    "unionfs": "^4.4.0"
+  }
+}
