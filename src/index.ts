@@ -9,9 +9,6 @@ import { createFsRequire } from 'fs-require';
 import { ConfigureCompilerPlugin } from './utils/configure-compiler-plugin.js';
 import { mfsFromJson } from './utils/mfs-from-json.js';
 import { getDefaultWebpackConfig } from './utils/get-default-webpack-config.js';
-import type { DefaultWebpackConfig } from './utils/get-default-webpack-config.js';
-
-export type { DefaultWebpackConfig };
 
 type Webpack = (options: webpack.Configuration) => any;
 type OutputFileSystem = webpack.Compiler['outputFileSystem'];
@@ -19,13 +16,13 @@ type fsRequire = ReturnType<typeof createFsRequire>;
 
 function createCompiler<WebpackConfig extends webpack.Configuration>(
 	mfs: OutputFileSystem,
-	configCallback?: (config: WebpackConfig & DefaultWebpackConfig) => void,
+	configCallback?: (config: WebpackConfig) => void,
 	customWebpack: Webpack = webpack,
 ) {
 	const config = getDefaultWebpackConfig();
 
 	if (configCallback) {
-		configCallback(config as WebpackConfig & DefaultWebpackConfig);
+		configCallback(config as WebpackConfig);
 	}
 
 	if (!Array.isArray(config.plugins)) {
@@ -48,7 +45,7 @@ function createCompiler<WebpackConfig extends webpack.Configuration>(
 
 export function build<WebpackConfig extends webpack.Configuration>(
 	volJson: DirectoryJSON,
-	configCallback?: (config: WebpackConfig & DefaultWebpackConfig) => void,
+	configCallback?: (config: WebpackConfig) => void,
 	customWebpack: Webpack = webpack,
 ) {
 	const mfs = mfsFromJson(volJson);
@@ -77,7 +74,7 @@ export function build<WebpackConfig extends webpack.Configuration>(
 
 export function watch<WebpackConfig extends webpack.Configuration>(
 	volJson: DirectoryJSON,
-	configCallback?: (config: WebpackConfig & DefaultWebpackConfig) => void,
+	configCallback?: (config: WebpackConfig) => void,
 	customWebpack: Webpack = webpack,
 ): {
     fs: IFs;
