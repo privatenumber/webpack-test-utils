@@ -90,11 +90,11 @@ Required
 
 An object where the key is the absolute path, and the value is the content of the path.
 
-#### configHook
+#### configurationHook
 
 Type: `(config: WebpackConfiguration) => void`
 
-A function that receives the Webpack configuration object so that it can be mutated before running the build.
+A function that receives the Webpack configuration object for configuration before running the build.
 
 
 ### watch(volume, configHook)
@@ -110,12 +110,11 @@ Required
 
 An object where the key is the absolute path, and the value is the content of the path.
 
-#### configHook
+#### configurationHook
 
 Type: `(config: WebpackConfiguration) => void`
 
-A function that receives the Webpack configuration object so that it can be mutated before running the build.
-
+A function that receives the Webpack configuration object for configuration before running the build.
 
 
 ### Default Webpack configuration
