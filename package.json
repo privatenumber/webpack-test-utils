@@ -17,51 +17,60 @@
 		"name": "Hiroki Osame",
 		"email": "hiroki.osame@gmail.com"
 	},
+	"type": "module",
 	"files": [
 		"dist"
 	],
-	"main": "dist/index.js",
-	"scripts": {
-		"test": "jest",
-		"build": "rollup -c rollup.config.js",
-		"lint": "eslint .",
-		"typecheck": "tsc --noEmit"
+	"main": "./dist/index.cjs",
+	"module": "./dist/index.mjs",
+	"types": "./dist/index.d.ts",
+	"exports": {
+		"types": "./dist/index.d.ts",
+		"require": "./dist/index.cjs",
+		"import": "./dist/index.mjs"
 	},
-	"husky": {
-		"hooks": {
-			"pre-commit": "lint-staged"
+	"imports": {
+		"#webpack-test-utils": {
+			"types": "./src/index.ts",
+			"development": "./src/index.ts",
+			"default": "./dist/index.mjs"
 		}
 	},
+	"scripts": {
+		"prepare": "simple-git-hooks",
+		"test": "tsx tests",
+		"build": "pkgroll --minify",
+		"lint": "eslint .",
+		"type-check": "tsc --noEmit",
+		"dev": "tsx watch --conditions=development tests",
+		"prepack": "pnpm build && clean-pkg-json"
+	},
+	"simple-git-hooks": {
+		"pre-commit": "pnpm lint-staged"
+	},
 	"lint-staged": {
-		"*.{js,ts}": [
-			"eslint",
-			"jest --bail --findRelatedTests"
-		]
+		"*.{js,ts}": "eslint"
 	},
 	"peerDependencies": {
 		"webpack": "^4.40.0 || ^5.0.0"
 	},
 	"dependencies": {
-		"fs-require": "^1.4.0",
-		"memfs": "^3.3.0",
+		"fs-require": "^1.4.2",
+		"memfs": "^3.4.12",
 		"unionfs": "^4.4.0"
 	},
 	"devDependencies": {
 		"@pvtnbr/eslint-config": "^0.33.0",
-		"@rollup/plugin-commonjs": "^21.0.1",
-		"@rollup/plugin-node-resolve": "^13.0.6",
-		"@types/jest": "^27.0.2",
 		"@types/node": "^18.11.9",
 		"@vue/compiler-sfc": "^3.2.22",
-		"es-jest": "^1.4.1",
+		"clean-pkg-json": "^1.2.0",
 		"eslint": "^8.28.0",
-		"husky": "^4.3.8",
-		"jest": "^27.3.1",
-		"lint-staged": "^12.0.2",
+		"lint-staged": "^13.0.4",
+		"manten": "^0.5.0",
 		"p-defer": "^4.0.0",
-		"rollup": "^2.60.0",
-		"rollup-plugin-dts": "^4.0.1",
-		"rollup-plugin-esbuild": "^4.6.0",
+		"pkgroll": "^1.6.0",
+		"simple-git-hooks": "^2.8.1",
+		"tsx": "^3.12.1",
 		"typescript": "^4.9.3",
 		"vue-loader": "^16.8.2",
 		"webpack": "^5.60.0"
