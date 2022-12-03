@@ -64,7 +64,7 @@ export const watch = <Webpack extends BaseWebpack = typeof webpack>(
 		fs: mfs,
 		require: createFsRequire(mfs),
 		async build(
-			force = customWebpack.version.startsWith('4.')
+			force = (customWebpack ?? webpack).version?.startsWith('4.')
 		) {
 			if (deferred) {
 				throw new Error('Build in progress');
@@ -89,15 +89,13 @@ export const watch = <Webpack extends BaseWebpack = typeof webpack>(
 
 			return await deferred.promise;
 		},
-		close() {
-			return new Promise<void>((resolve, reject) => {
-				watching.close((error) => {
-					if (error) {
-						return reject(error);
-					}
-					resolve();
-				});
+		close: () => new Promise<void>((resolve, reject) => {
+			watching.close((error) => {
+				if (error) {
+					return reject(error);
+				}
+				resolve();
 			});
-		},
+		}),
 	};
 }

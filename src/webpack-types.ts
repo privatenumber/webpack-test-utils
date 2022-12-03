@@ -21,12 +21,7 @@ export type BaseWatching = {
 	invalidate: () => void;
 }
 
-export type BaseWebpack<
-	Configuration = BaseConfiguration,
-	Stats = BaseStats,
-> = (
-	options: Configuration,
-) => {
+type BaseCompiler<Stats> = {
 	run: (
 		handler: (error?: Error, stats?: Stats) => void,
 	) => void;
@@ -35,4 +30,12 @@ export type BaseWebpack<
 		watchOptions: any,
 		handler: (error?: Error, stats?: Stats) => void,
 	) => BaseWatching;
-};
+}
+
+export type BaseWebpack<
+	Configuration = BaseConfiguration,
+	Stats = BaseStats,
+> = {
+	(options: Configuration): BaseCompiler<Stats>;
+	version?: string;
+}
