@@ -1,7 +1,7 @@
 export type BaseStats = {
 	readonly hash?: string;
-	readonly startTime: any;
-	readonly endTime: any;
+	readonly startTime?: number;
+	readonly endTime?: number;
 	hasWarnings(): boolean;
 	hasErrors(): boolean;
 	toString(options?: any): string;
@@ -22,9 +22,8 @@ export type BaseWatching = {
 }
 
 export type BaseWebpack<
-	// Remve extends?
-	Configuration extends BaseConfiguration = BaseConfiguration,
-	Stats = any,
+	Configuration = BaseConfiguration,
+	Stats = BaseStats,
 > = (
 	options: Configuration,
 ) => {
@@ -34,7 +33,6 @@ export type BaseWebpack<
 
 	watch: (
 		watchOptions: any,
-		// Would like to chang error: any to error: Error but it breaks the tests
-		handler: (error?: any, stats?: Stats) => void,
+		handler: (error?: Error, stats?: Stats) => void,
 	) => BaseWatching;
 };
