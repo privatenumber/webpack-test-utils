@@ -36,7 +36,7 @@ export const build = <Webpack extends BaseWebpack = typeof webpack>(
 			}
 
 			resolve({
-				stats: stats!,
+				stats: stats as GetStats<Webpack>,
 				fs: mfs,
 				require: createFsRequire(mfs),
 			});
@@ -64,7 +64,7 @@ export const watch = <Webpack extends BaseWebpack = typeof webpack>(
 		fs: mfs,
 		require: createFsRequire(mfs),
 		async build(
-			force = webpack.version.startsWith('4.')
+			force = customWebpack.version.startsWith('4.')
 		) {
 			if (deferred) {
 				throw new Error('Build in progress');
@@ -80,7 +80,7 @@ export const watch = <Webpack extends BaseWebpack = typeof webpack>(
 						return;
 					}
 
-					deferred?.resolve(stats);
+					deferred?.resolve(stats as GetStats<Webpack>);
 					deferred = null;
 				});
 			} else if (force) {
