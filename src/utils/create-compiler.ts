@@ -3,13 +3,13 @@ import webpack, { type OutputFileSystem } from 'webpack';
 import type { IFs } from 'memfs';
 import { Union } from 'unionfs';
 import type { IFS } from 'unionfs/lib/fs.js';
-import { ConfigureCompilerPlugin } from '../utils/configure-compiler-plugin.js';
-import { getDefaultWebpackConfig } from '../utils/get-default-webpack-config.js';
 import type {
 	BaseConfiguration,
 	BaseWebpack,
 } from '../webpack-types.js';
 import type { ConfigureHook } from '../types.js';
+import { ConfigureCompilerPlugin } from './configure-compiler-plugin.js';
+import { getDefaultWebpackConfig } from './get-default-webpack-config.js';
 
 export function createCompiler<
 	WebpackConfiguration extends BaseConfiguration,

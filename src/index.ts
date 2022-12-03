@@ -18,7 +18,7 @@ import { createCompiler } from './utils/create-compiler.js';
 export const build = <Webpack extends BaseWebpack = typeof webpack>(
 	volJson: DirectoryJSON,
 	configureHook?: ConfigureHook<GetConfig<Webpack>>,
-	customWebpack?: Webpack
+	customWebpack?: Webpack,
 ) => {
 	const mfs = mfsFromJson(volJson);
 
@@ -42,12 +42,12 @@ export const build = <Webpack extends BaseWebpack = typeof webpack>(
 			});
 		});
 	});
-}
+};
 
 export const watch = <Webpack extends BaseWebpack = typeof webpack>(
 	volJson: DirectoryJSON,
 	configureHook?: ConfigureHook<GetConfig<Webpack>>,
-	customWebpack?: Webpack
+	customWebpack?: Webpack,
 ): {
     fs: IFs;
     require: fsRequire;
@@ -64,7 +64,7 @@ export const watch = <Webpack extends BaseWebpack = typeof webpack>(
 		fs: mfs,
 		require: createFsRequire(mfs),
 		async build(
-			force = (customWebpack ?? webpack).version?.startsWith('4.')
+			force = (customWebpack ?? webpack).version?.startsWith('4.'),
 		) {
 			if (deferred) {
 				throw new Error('Build in progress');
@@ -98,4 +98,4 @@ export const watch = <Webpack extends BaseWebpack = typeof webpack>(
 			});
 		}),
 	};
-}
+};

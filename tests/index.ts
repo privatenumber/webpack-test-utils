@@ -38,12 +38,12 @@ describe('webpack-test-utils', ({ describe, test }) => {
 			volume,
 			(config) => {
 				(config.entry as webpack5.EntryObject).index = '/src/index.vue';
-	
+
 				config.module!.rules!.push({
 					test: /\.vue$/,
 					loader: 'vue-loader',
 				});
-	
+
 				config.plugins!.push(new VueLoaderPlugin());
 			},
 		);
@@ -93,12 +93,12 @@ describe('webpack-test-utils', ({ describe, test }) => {
 				},
 				webpack4,
 			);
-	
+
 			expect<webpack4.Stats>(built.stats);
-	
+
 			console.log(built);
 		});
-	
+
 		test('supports Webpack 5 types', async () => {
 			const built = await build(
 				{},
@@ -108,11 +108,11 @@ describe('webpack-test-utils', ({ describe, test }) => {
 				},
 				webpack5,
 			);
-	
+
 			expect<webpack5.Stats>(built.stats);
 			console.log(built);
 		});
-	
+
 		test('watch', async () => {
 			const built = await build(
 				{},
@@ -122,7 +122,7 @@ describe('webpack-test-utils', ({ describe, test }) => {
 				},
 				webpack5,
 			);
-	
+
 			expect<webpack5.Stats>(built.stats);
 			console.log(built);
 		});
