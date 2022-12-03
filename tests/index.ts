@@ -1,9 +1,10 @@
 import { describe, expect } from 'manten';
 import { VueLoaderPlugin } from 'vue-loader';
-import type webpack from 'webpack';
+import webpack4 from 'webpack';
+import webpack5 from 'webpack5';
 import { build, watch } from '#webpack-test-utils';
 
-describe('webpack-test-utils', ({ test }) => {
+describe('webpack-test-utils', ({ describe, test }) => {
 	test('build', async () => {
 		const volume = {
 			'/src/index.js': 'export default "12345"',
@@ -11,6 +12,7 @@ describe('webpack-test-utils', ({ test }) => {
 
 		const built = await build(volume);
 
+		expect<webpack4.Stats>(built.stats);
 		expect(built.stats.hasErrors()).toBe(false);
 		expect(built.stats.hasWarnings()).toBe(false);
 
@@ -18,10 +20,13 @@ describe('webpack-test-utils', ({ test }) => {
 	});
 
 	test('config defaults', async () => {
-		await build({}, (config) => {
-			expect<webpack.ModuleOptions['rules']>(config.module!.rules).toEqual([]);
-			expect<webpack.Configuration['plugins']>(config.plugins).toEqual([]);
-		});
+		await build(
+			{},
+			(config) => {
+				expect<webpack4.RuleSetRule[]>(config.module!.rules).toEqual([]);
+				expect<webpack4.Configuration['plugins']>(config.plugins).toEqual([]);
+			},
+		);
 	});
 
 	test('customize config', async () => {
@@ -29,16 +34,19 @@ describe('webpack-test-utils', ({ test }) => {
 			'/src/index.vue': '<template>Hello world</template>',
 		};
 
-		const built = await build(volume, (config) => {
-			(config.entry as webpack.EntryObject).index = '/src/index.vue';
-
-			config.module!.rules!.push({
-				test: /\.vue$/,
-				loader: 'vue-loader',
-			});
-
-			config.plugins!.push(new VueLoaderPlugin());
-		});
+		const built = await build(
+			volume,
+			(config) => {
+				(config.entry as webpack5.EntryObject).index = '/src/index.vue';
+	
+				config.module!.rules!.push({
+					test: /\.vue$/,
+					loader: 'vue-loader',
+				});
+	
+				config.plugins!.push(new VueLoaderPlugin());
+			},
+		);
 
 		expect(built.stats.hasErrors()).toBe(false);
 		expect(built.stats.hasWarnings()).toBe(false);
@@ -73,5 +81,50 @@ describe('webpack-test-utils', ({ test }) => {
 		expect(watching.require('/dist')).toBe('54321');
 
 		await watching.close();
+	});
+
+	describe('Custom Webpack', ({ test }) => {
+		test('supports Webpack 4 types', async () => {
+			const built = await build(
+				{},
+				(config) => {
+					expect<webpack4.RuleSetRule[]>(config.module!.rules).toEqual([]);
+					expect<webpack4.Configuration['plugins']>(config.plugins).toEqual([]);
+				},
+				webpack4,
+			);
+	
+			expect<webpack4.Stats>(built.stats);
+	
+			console.log(built);
+		});
+	
+		test('supports Webpack 5 types', async () => {
+			const built = await build(
+				{},
+				(config) => {
+					expect<webpack5.ModuleOptions['rules']>(config.module!.rules).toEqual([]);
+					expect<webpack5.Configuration['plugins']>(config.plugins).toEqual([]);
+				},
+				webpack5,
+			);
+	
+			expect<webpack5.Stats>(built.stats);
+			console.log(built);
+		});
+	
+		test('watch', async () => {
+			const built = await build(
+				{},
+				(config) => {
+					expect<webpack5.ModuleOptions['rules']>(config.module!.rules).toEqual([]);
+					expect<webpack5.Configuration['plugins']>(config.plugins).toEqual([]);
+				},
+				webpack5,
+			);
+	
+			expect<webpack5.Stats>(built.stats);
+			console.log(built);
+		});
 	});
 });

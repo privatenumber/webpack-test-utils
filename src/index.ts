@@ -1,60 +1,33 @@
-import fs from 'fs';
 import webpack from 'webpack';
-import { Union } from 'unionfs';
-import type { IFS } from 'unionfs/lib/fs.js';
 import { DirectoryJSON } from 'memfs';
 import type { IFs } from 'memfs';
 import pDefer, { DeferredPromise } from 'p-defer';
 import { createFsRequire, type fsRequire } from 'fs-require';
-import { ConfigureCompilerPlugin } from './utils/configure-compiler-plugin.js';
 import { mfsFromJson } from './utils/mfs-from-json.js';
-import { getDefaultWebpackConfig } from './utils/get-default-webpack-config.js';
+import type {
+	BaseWatching,
+	BaseWebpack,
+} from './webpack-types.js';
+import type {
+	GetStats,
+	GetConfig,
+	ConfigureHook,
+} from './types.js';
+import { createCompiler } from './utils/create-compiler.js';
 
-type Webpack = (options: webpack.Configuration) => any;
-type OutputFileSystem = webpack.Compiler['outputFileSystem'];
-
-function createCompiler<WebpackConfig extends webpack.Configuration>(
-	mfs: OutputFileSystem,
-	configCallback?: (config: WebpackConfig) => void,
-	customWebpack: Webpack = webpack,
-) {
-	const config = getDefaultWebpackConfig();
-
-	if (configCallback) {
-		configCallback(config as WebpackConfig);
-	}
-
-	if (!Array.isArray(config.plugins)) {
-		config.plugins = [];
-	}
-
-	/**
-	 * Inject memfs into the compiler before internal dependencies initialize
-	 * (eg. PackFileCacheStrategy)
-	 *
-	 * https://github.com/webpack/webpack/blob/068ce839478317b54927d533f6fa4713cb6834da/lib/webpack.js#L69-L77
-	 */
-	config.plugins.unshift(new ConfigureCompilerPlugin({
-		inputFileSystem: (new Union()).use(fs).use(mfs as unknown as IFS),
-		outputFileSystem: mfs,
-	}));
-
-	return customWebpack(config) as webpack.Compiler;
-}
-
-export function build<WebpackConfig extends webpack.Configuration>(
+export const build = <Webpack extends BaseWebpack = typeof webpack>(
 	volJson: DirectoryJSON,
-	configCallback?: (config: WebpackConfig) => void,
-	customWebpack: Webpack = webpack,
-) {
+	configureHook?: ConfigureHook<GetConfig<Webpack>>,
+	customWebpack?: Webpack
+) => {
 	const mfs = mfsFromJson(volJson);
 
 	return new Promise<{
-		stats: webpack.Stats;
+		stats: GetStats<Webpack>;
 		fs: IFs;
 		require: fsRequire;
 	}>((resolve, reject) => {
-		const compiler = createCompiler(mfs, configCallback, customWebpack);
+		const compiler = createCompiler(mfs, configureHook, customWebpack);
 
 		compiler.run((error, stats) => {
 			if (error) {
@@ -71,26 +44,28 @@ export function build<WebpackConfig extends webpack.Configuration>(
 	});
 }
 
-export function watch<WebpackConfig extends webpack.Configuration>(
+export const watch = <Webpack extends BaseWebpack = typeof webpack>(
 	volJson: DirectoryJSON,
-	configCallback?: (config: WebpackConfig) => void,
-	customWebpack: Webpack = webpack,
+	configureHook?: ConfigureHook<GetConfig<Webpack>>,
+	customWebpack?: Webpack
 ): {
     fs: IFs;
     require: fsRequire;
-    build(force?: boolean): Promise<webpack.Stats>;
+    build(force?: boolean): Promise<GetStats<Webpack>>;
     close(): Promise<void>;
-} {
+} => {
 	const mfs = mfsFromJson(volJson);
-	const compiler = createCompiler(mfs, configCallback, customWebpack);
+	const compiler = createCompiler(mfs, configureHook, customWebpack);
 
-	let watching: webpack.Watching;
-	let deferred: DeferredPromise<webpack.Stats> | null = null;
+	let watching: BaseWatching;
+	let deferred: DeferredPromise<GetStats<Webpack>> | null = null;
 
 	return {
 		fs: mfs,
 		require: createFsRequire(mfs),
-		async build(force = webpack.version.startsWith('4.')) {
+		async build(
+			force = webpack.version.startsWith('4.')
+		) {
 			if (deferred) {
 				throw new Error('Build in progress');
 			}
