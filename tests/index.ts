@@ -66,6 +66,7 @@ describe('webpack-test-utils', ({ describe, test }) => {
 		const watching = watch(volume);
 		let stats = await watching.build();
 
+		expect<webpack4.Stats>(stats);
 		expect(stats.hasWarnings()).toBe(false);
 		expect(stats.hasErrors()).toBe(false);
 
@@ -83,48 +84,87 @@ describe('webpack-test-utils', ({ describe, test }) => {
 		await watching.close();
 	});
 
-	describe('Custom Webpack', ({ test }) => {
-		test('supports Webpack 4 types', async () => {
-			const built = await build(
-				{},
-				(config) => {
-					expect<webpack4.RuleSetRule[]>(config.module!.rules).toEqual([]);
-					expect<webpack4.Configuration['plugins']>(config.plugins).toEqual([]);
-				},
-				webpack4,
-			);
+	describe('Custom Webpack', ({ describe }) => {
+		describe('Webpack 4', ({ test }) => {
+			test('build', async () => {
+				const built = await build(
+					{},
+					(config) => {
+						expect<webpack4.RuleSetRule[]>(config.module!.rules).toEqual([]);
+						expect<webpack4.Configuration['plugins']>(config.plugins).toEqual([]);
+					},
+					webpack4,
+				);
 
-			expect<webpack4.Stats>(built.stats);
+				expect<webpack4.Stats>(built.stats);
+			});
 
-			console.log(built);
+			test('watch', async () => {
+				const volume = {
+					'/src/index.js': 'export default "12345"',
+				};
+
+				const watching = watch(volume, undefined, webpack4);
+				let stats = await watching.build();
+
+				expect<webpack4.Stats>(stats);
+				expect(stats.hasWarnings()).toBe(false);
+				expect(stats.hasErrors()).toBe(false);
+
+				expect(watching.require('/dist')).toBe('12345');
+
+				await watching.fs.promises.writeFile('/src/index.js', 'export default "54321"');
+
+				stats = await watching.build();
+				expect(stats.hasWarnings()).toBe(false);
+				expect(stats.hasErrors()).toBe(false);
+
+				delete watching.require.cache[watching.require.resolve('/dist')];
+				expect(watching.require('/dist')).toBe('54321');
+
+				await watching.close();
+			});
 		});
 
-		test('supports Webpack 5 types', async () => {
-			const built = await build(
-				{},
-				(config) => {
-					expect<webpack5.ModuleOptions['rules']>(config.module!.rules).toEqual([]);
-					expect<webpack5.Configuration['plugins']>(config.plugins).toEqual([]);
-				},
-				webpack5,
-			);
+		describe('Webpack 5', ({ test }) => {
+			test('build', async () => {
+				const built = await build(
+					{},
+					(config) => {
+						expect<webpack5.ModuleOptions['rules']>(config.module!.rules).toEqual([]);
+						expect<webpack5.Configuration['plugins']>(config.plugins).toEqual([]);
+					},
+					webpack5,
+				);
 
-			expect<webpack5.Stats>(built.stats);
-			console.log(built);
-		});
+				expect<webpack5.Stats>(built.stats);
+			});
 
-		test('watch', async () => {
-			const built = await build(
-				{},
-				(config) => {
-					expect<webpack5.ModuleOptions['rules']>(config.module!.rules).toEqual([]);
-					expect<webpack5.Configuration['plugins']>(config.plugins).toEqual([]);
-				},
-				webpack5,
-			);
+			test('watch', async () => {
+				const volume = {
+					'/src/index.js': 'export default "12345"',
+				};
 
-			expect<webpack5.Stats>(built.stats);
-			console.log(built);
+				const watching = watch(volume, undefined, webpack5);
+				let stats = await watching.build();
+
+				expect<webpack5.Stats>(stats);
+				expect(stats.hasWarnings()).toBe(false);
+				expect(stats.hasErrors()).toBe(false);
+
+				expect(watching.require('/dist')).toBe('12345');
+
+				await watching.fs.promises.writeFile('/src/index.js', 'export default "54321"');
+
+				stats = await watching.build();
+				expect(stats.hasWarnings()).toBe(false);
+				expect(stats.hasErrors()).toBe(false);
+
+				delete watching.require.cache[watching.require.resolve('/dist')];
+				expect(watching.require('/dist')).toBe('54321');
+
+				await watching.close();
+			});
 		});
 	});
 });

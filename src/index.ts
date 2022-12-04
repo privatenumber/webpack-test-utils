@@ -57,7 +57,7 @@ export const watch = <Webpack extends BaseWebpack = typeof webpack>(
 	const mfs = mfsFromJson(volJson);
 	const compiler = createCompiler(mfs, configureHook, customWebpack);
 
-	let watching: BaseWatching;
+	let watching: BaseWatching | undefined;
 	let deferred: DeferredPromise<GetStats<Webpack>> | null = null;
 
 	return {
@@ -90,6 +90,11 @@ export const watch = <Webpack extends BaseWebpack = typeof webpack>(
 			return await deferred.promise;
 		},
 		close: () => new Promise<void>((resolve, reject) => {
+			if (!watching) {
+				resolve();
+				return;
+			}
+
 			watching.close((error) => {
 				if (error) {
 					return reject(error);
