@@ -11,7 +11,7 @@ specifiers:
   manten: ^0.5.0
   memfs: ^3.4.12
   p-defer: ^4.0.0
-  pkgroll: ^1.6.0
+  pkgroll: ^1.7.0
   simple-git-hooks: ^2.8.1
   tsx: ^3.12.1
   typescript: ^4.9.3
@@ -33,7 +33,7 @@ devDependencies:
   lint-staged: 13.0.4
   manten: 0.5.0
   p-defer: 4.0.0
-  pkgroll: 1.6.0_typescript@4.9.3
+  pkgroll: 1.7.0_typescript@4.9.3
   simple-git-hooks: 2.8.1
   tsx: 3.12.1
   typescript: 4.9.3
@@ -3115,8 +3115,8 @@ packages:
     hasBin: true
     dev: true
 
-  /pkgroll/1.6.0_typescript@4.9.3:
-    resolution: {integrity: sha512-gVr6+WPpVHnm2WxaVImyA3tocXLtUI/cOB8r3p7PR7mMDycCFrsKyw46zCGcs3XU1fXxnC4oe6k8f4/3X8SRzw==}
+  /pkgroll/1.7.0_typescript@4.9.3:
+    resolution: {integrity: sha512-rP6cx/LTD6fXabCTY72aAJbJU0T0MKkHIJmsT8yLBvZRc2zWllv2XkjkHejcuuxTCtoZpyV0+RTX9ZupK/psBg==}
     hasBin: true
     peerDependencies:
       typescript: ^4.1
