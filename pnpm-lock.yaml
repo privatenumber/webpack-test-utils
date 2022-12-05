@@ -12,7 +12,7 @@ specifiers:
   manten: ^0.5.0
   memfs: ^3.4.12
   p-defer: ^4.0.0
-  pkgroll: ^1.6.0
+  pkgroll: github:privatenumber/pkgroll#npm/develop
   simple-git-hooks: ^2.8.1
   tsx: ^3.12.1
   typescript: ^4.9.3
@@ -36,7 +36,7 @@ devDependencies:
   lint-staged: 13.0.4
   manten: 0.5.0
   p-defer: 4.0.0
-  pkgroll: 1.6.0_typescript@4.9.3
+  pkgroll: github.com/privatenumber/pkgroll/73280c76b28cd9c6a7814d2ec5b4679233919bba_typescript@4.9.3
   simple-git-hooks: 2.8.1
   tsx: 3.12.1
   typescript: 4.9.3
@@ -294,7 +294,7 @@ packages:
       estree-walker: 2.0.2
       glob: 7.2.0
       is-reference: 1.2.1
-      magic-string: 0.25.7
+      magic-string: 0.25.9
       resolve: 1.22.1
       rollup: 2.79.1
     dev: true
@@ -306,7 +306,7 @@ packages:
     dependencies:
       '@rollup/pluginutils': 3.1.0_rollup@2.79.1
       estree-walker: 2.0.2
-      magic-string: 0.25.7
+      magic-string: 0.25.9
       rollup: 2.79.1
     dev: true
 
@@ -340,7 +340,7 @@ packages:
       rollup: ^1.20.0 || ^2.0.0
     dependencies:
       '@rollup/pluginutils': 3.1.0_rollup@2.79.1
-      magic-string: 0.25.7
+      magic-string: 0.25.9
       rollup: 2.79.1
     dev: true
 
@@ -2979,7 +2979,7 @@ packages:
     dev: true
 
   /has-flag/3.0.0:
-    resolution: {integrity: sha1-tdRU3CGZriJWmfNGfloH87lVuv0=}
+    resolution: {integrity: sha512-sKJf1+ceQBr4SMkvQnBDNDtf4TXpVhVGateu0t918bl30FnbE2m4vNLX+VWe/dpjlb+HugGYzW7uQXH98HPEYw==}
     engines: {node: '>=4'}
     dev: true
 
@@ -3785,12 +3785,6 @@ packages:
       yallist: 4.0.0
     dev: true
 
-  /magic-string/0.25.7:
-    resolution: {integrity: sha512-4CrMT5DOHTDk4HYDlzmwu4FVCcIYI8gauveasrdCu2IKIFOJ3f0v/8MDGJCDL9oD2ppz/Av1b0Nj345H9M+XIA==}
-    dependencies:
-      sourcemap-codec: 1.4.8
-    dev: true
-
   /magic-string/0.25.9:
     resolution: {integrity: sha512-RmF0AsMzgt25qzqqLc1+MbHmhdx0ojF2Fvs4XnOqz2ZOBXzzkEwc/dJQZCYHAn7v1jbVOjAZfK8msRn4BxO4VQ==}
     dependencies:
@@ -4460,28 +4454,6 @@ packages:
     engines: {node: '>=6'}
     dependencies:
       find-up: 3.0.0
-    dev: true
-
-  /pkgroll/1.6.0_typescript@4.9.3:
-    resolution: {integrity: sha512-gVr6+WPpVHnm2WxaVImyA3tocXLtUI/cOB8r3p7PR7mMDycCFrsKyw46zCGcs3XU1fXxnC4oe6k8f4/3X8SRzw==}
-    hasBin: true
-    peerDependencies:
-      typescript: ^4.1
-    peerDependenciesMeta:
-      typescript:
-        optional: true
-    dependencies:
-      '@rollup/plugin-alias': 3.1.9_rollup@2.79.1
-      '@rollup/plugin-commonjs': 22.0.2_rollup@2.79.1
-      '@rollup/plugin-inject': 4.0.4_rollup@2.79.1
-      '@rollup/plugin-json': 4.1.0_rollup@2.79.1
-      '@rollup/plugin-node-resolve': 13.3.0_rollup@2.79.1
-      '@rollup/plugin-replace': 4.0.0_rollup@2.79.1
-      '@rollup/pluginutils': 4.2.1
-      esbuild: 0.15.15
-      magic-string: 0.26.7
-      rollup: 2.79.1
-      typescript: 4.9.3
     dev: true
 
   /pluralize/8.0.0:
@@ -5905,4 +5877,29 @@ packages:
   /yocto-queue/0.1.0:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
+    dev: true
+
+  github.com/privatenumber/pkgroll/73280c76b28cd9c6a7814d2ec5b4679233919bba_typescript@4.9.3:
+    resolution: {tarball: https://codeload.github.com/privatenumber/pkgroll/tar.gz/73280c76b28cd9c6a7814d2ec5b4679233919bba}
+    id: github.com/privatenumber/pkgroll/73280c76b28cd9c6a7814d2ec5b4679233919bba
+    name: pkgroll
+    version: 0.0.0-semantic-release
+    hasBin: true
+    peerDependencies:
+      typescript: ^4.1
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+    dependencies:
+      '@rollup/plugin-alias': 3.1.9_rollup@2.79.1
+      '@rollup/plugin-commonjs': 22.0.2_rollup@2.79.1
+      '@rollup/plugin-inject': 4.0.4_rollup@2.79.1
+      '@rollup/plugin-json': 4.1.0_rollup@2.79.1
+      '@rollup/plugin-node-resolve': 13.3.0_rollup@2.79.1
+      '@rollup/plugin-replace': 4.0.0_rollup@2.79.1
+      '@rollup/pluginutils': 4.2.1
+      esbuild: 0.15.15
+      magic-string: 0.26.7
+      rollup: 2.79.1
+      typescript: 4.9.3
     dev: true
