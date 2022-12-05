@@ -7,12 +7,12 @@ specifiers:
   '@vue/compiler-sfc': ^3.2.45
   clean-pkg-json: ^1.2.0
   eslint: ^8.28.0
-  fs-require: ^1.5.0
+  fs-require: ^1.6.0
   lint-staged: ^13.0.4
   manten: ^0.5.0
   memfs: ^3.4.12
   p-defer: ^4.0.0
-  pkgroll: ^1.6.0
+  pkgroll: ^1.7.0
   simple-git-hooks: ^2.8.1
   tsx: ^3.12.1
   typescript: ^4.9.3
@@ -22,7 +22,7 @@ specifiers:
   webpack5: npm:webpack@^5.0.0
 
 dependencies:
-  fs-require: 1.5.0
+  fs-require: 1.6.0
   memfs: 3.4.12
   unionfs: 4.4.0
 
@@ -36,7 +36,7 @@ devDependencies:
   lint-staged: 13.0.4
   manten: 0.5.0
   p-defer: 4.0.0
-  pkgroll: 1.6.0_typescript@4.9.3
+  pkgroll: 1.7.0_typescript@4.9.3
   simple-git-hooks: 2.8.1
   tsx: 3.12.1
   typescript: 4.9.3
@@ -1718,8 +1718,8 @@ packages:
       ms: 2.1.2
     dev: true
 
-  /decode-uri-component/0.2.0:
-    resolution: {integrity: sha512-hjf+xovcEn31w/EUYdTXQh/8smFL/dzYjohQGEIgjyNavaJfBY2p5F527Bo1VPATxv0VYTUC2bOcXvqFwk78Og==}
+  /decode-uri-component/0.2.2:
+    resolution: {integrity: sha512-FqUYQ+8o158GyGTrMFJms9qh3CqTKvAqgqsTnkLI8sKu0028orqBhxNMFkFen0zGyg6epACD32pjVk58ngIErQ==}
     engines: {node: '>=0.10'}
     dev: true
 
@@ -2801,8 +2801,8 @@ packages:
     resolution: {integrity: sha512-cybjIfiiE+pTWicSCLFHSrXZ6EilF30oh91FDP9S2B051prEa7QWfrVTQm10/dDpswBDXZugPa1Ogu8Yh+HV0Q==}
     dev: false
 
-  /fs-require/1.5.0:
-    resolution: {integrity: sha512-TguC+1YCkfBeohSKz/CKjArD0zry2ns0aqejCLVncy2ZHpCM9hJqpuzBu0EgzEPKRgL8CLNmw0Jpmi+m7gtaDQ==}
+  /fs-require/1.6.0:
+    resolution: {integrity: sha512-zk5lFDV09Ef+CwOuPI/Q46lNdyzypPH/dB4Ywnyt40l2yqe5Z8ZJBGFaaYHwOwXAtKJEW4lSsn6V26erlEXVGA==}
     dev: false
 
   /fs-write-stream-atomic/1.0.10:
@@ -3588,7 +3588,7 @@ packages:
     engines: {node: '>=6'}
     hasBin: true
     dependencies:
-      minimist: 1.2.5
+      minimist: 1.2.7
     dev: true
 
   /jsonc-eslint-parser/2.1.0:
@@ -3970,10 +3970,6 @@ packages:
     resolution: {integrity: sha512-J7p63hRiAjw1NDEww1W7i37+ByIrOWO5XQQAzZ3VOcL0PNybwpfmV/N05zFAzwQ9USyEcX6t3UO+K5aqBQOIHw==}
     dependencies:
       brace-expansion: 1.1.11
-    dev: true
-
-  /minimist/1.2.5:
-    resolution: {integrity: sha512-FM9nNUYrRBAELZQT3xeZQ7fmMOBg6nWNmJKTcgsJeaLstP/UODVpGsr5OhXhhXg6f+qtJ8uiZ+PUxkDWcgIXLw==}
     dev: true
 
   /minimist/1.2.7:
@@ -4462,8 +4458,8 @@ packages:
       find-up: 3.0.0
     dev: true
 
-  /pkgroll/1.6.0_typescript@4.9.3:
-    resolution: {integrity: sha512-gVr6+WPpVHnm2WxaVImyA3tocXLtUI/cOB8r3p7PR7mMDycCFrsKyw46zCGcs3XU1fXxnC4oe6k8f4/3X8SRzw==}
+  /pkgroll/1.7.0_typescript@4.9.3:
+    resolution: {integrity: sha512-rP6cx/LTD6fXabCTY72aAJbJU0T0MKkHIJmsT8yLBvZRc2zWllv2XkjkHejcuuxTCtoZpyV0+RTX9ZupK/psBg==}
     hasBin: true
     peerDependencies:
       typescript: ^4.1
@@ -5085,7 +5081,7 @@ packages:
     deprecated: See https://github.com/lydell/source-map-resolve#deprecated
     dependencies:
       atob: 2.1.2
-      decode-uri-component: 0.2.0
+      decode-uri-component: 0.2.2
       resolve-url: 0.2.1
       source-map-url: 0.4.1
       urix: 0.1.0
