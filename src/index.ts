@@ -89,18 +89,12 @@ export const watch = <Webpack extends BaseWebpack = typeof webpack>(
 
 			return await deferred.promise;
 		},
-		close: () => new Promise<void>((resolve, reject) => {
-			if (!watching) {
+		close: () => new Promise<void>((resolve) => {
+			if (watching) {
+				watching.close(resolve);
+			} else {
 				resolve();
-				return;
 			}
-
-			watching.close((error) => {
-				if (error) {
-					return reject(error);
-				}
-				resolve();
-			});
 		}),
 	};
 };
