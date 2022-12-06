@@ -15,20 +15,22 @@ export type BaseConfiguration = {
 
 export type BaseWatching = {
 	close: (
-		handler: (error?: Error) => void
+		handler: () => void
 	) => void;
 
 	invalidate: () => void;
 }
 
+type CallbackFunction<T> = (error?: null | Error, result?: T) => any;
+
 type BaseCompiler<Stats> = {
 	run: (
-		handler: (error?: Error, stats?: Stats) => void,
+		handler: CallbackFunction<Stats>,
 	) => void;
 
 	watch: (
 		watchOptions: any,
-		handler: (error?: Error, stats?: Stats) => void,
+		handler: CallbackFunction<Stats>,
 	) => BaseWatching;
 }
 
