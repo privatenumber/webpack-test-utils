@@ -58,6 +58,23 @@ describe('webpack-test-utils', ({ describe, test }) => {
 		});
 	});
 
+	test('minifies', async () => {
+		const built = await build(
+			{
+				'/src/index.js': 'const variableName = "1234"; export default variableName',
+			},
+			(config) => {
+				config.optimization!.minimize = true;
+			},
+		);
+
+		expect(built.stats.hasErrors()).toBe(false);
+		expect(built.stats.hasWarnings()).toBe(false);
+
+		const minified = built.fs.readFileSync('/dist/index.js', 'utf8');
+		expect(minified).not.toMatch('variableName');
+	});
+
 	test('watch', async () => {
 		const volume = {
 			'/src/index.js': 'export default "12345"',
